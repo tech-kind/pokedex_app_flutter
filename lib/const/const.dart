@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 const int pokeMaxId = 898;
 const String pokeApiRoute = "https://pokeapi.co/api/v2";
+const String favFileName = "poke_favs.db";
+const String favTableName = "favorites";
 const Map<String, Color> pokeTypeColors = {
   "ノーマル": Color(0xFFA8A77A),
   "ほのお": Color(0xFFEE8130),

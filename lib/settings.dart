@@ -18,17 +18,13 @@ class _SettingsState extends State<Settings> {
           ListTile(
             leading: const Icon(Icons.lightbulb),
             title: const Text('Dark/Light Mode'),
-            trailing: Text(
-              (mode.mode == ThemeMode.system)
-                  ? 'System'
-                  : (mode.mode == ThemeMode.dark ? 'Dark' : 'Light'),
-            ),
+            trailing: Text((mode.mode == ThemeMode.system)
+                ? 'System'
+                : (mode.mode == ThemeMode.dark ? 'Dark' : 'Light')),
             onTap: () async {
               var ret = await Navigator.of(context).push<ThemeMode>(
                 MaterialPageRoute(
-                  builder: (context) => ThemeModeSelectionPage(
-                    mode: mode.mode,
-                  ),
+                  builder: (context) => ThemeModeSelectionPage(init: mode.mode),
                 ),
               );
               if (ret != null) {
@@ -43,9 +39,11 @@ class _SettingsState extends State<Settings> {
 }
 
 class ThemeModeSelectionPage extends StatefulWidget {
-  const ThemeModeSelectionPage({Key? key, required this.mode})
-      : super(key: key);
-  final ThemeMode mode;
+  const ThemeModeSelectionPage({
+    Key? key,
+    required this.init,
+  }) : super(key: key);
+  final ThemeMode init;
 
   @override
   _ThemeModeSelectionPageState createState() => _ThemeModeSelectionPageState();
@@ -57,7 +55,7 @@ class _ThemeModeSelectionPageState extends State<ThemeModeSelectionPage> {
   @override
   void initState() {
     super.initState();
-    _current = widget.mode;
+    _current = widget.init;
   }
 
   @override
